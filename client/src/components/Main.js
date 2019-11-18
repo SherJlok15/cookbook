@@ -16,11 +16,15 @@ export default class Main extends Component {
     return (
       <div className="wrapper">
         <div className="content header-img">
-        <NavBar/>
+        <NavBar
+          navbarGetSearchInputValue={this.props.navbarGetSearchInputValue}
+          navbarSearchValue={this.props.navbarSearchValue}
+          navbarSearchInputResetValue={this.props.navbarSearchInputResetValue}
+        />
         <main className="">
           <Switch>
             <Route exact path='/recipes/'>
-              <RecipesList data={this.props.data}/>
+              <RecipesList data={this.props.data} navbarSearchValue={this.props.navbarSearchValue}/>
             </Route>
             <Route path='/recipes/add/'>
               <CreateNewRecipe
@@ -29,6 +33,7 @@ export default class Main extends Component {
                 getTextValue={this.props.getTextValue} text={this.props.text}
                 getDateValue={this.props.getDateValue} date={this.props.date}
                 subitNewRecipeForm={this.props.subitNewRecipeForm}
+                navbarSearchValue={this.props.navbarSearchValue}
               />
             </Route>
             <Route exact path='/recipes/:id'
@@ -39,6 +44,7 @@ export default class Main extends Component {
                   getRecipeId={this.props.getRecipeId}
                   toggleClassLastVersion={this.props.toggleClassLastVersion}
                   show_last_version={this.props.show_last_version}
+                  navbarSearchValue={this.props.navbarSearchValue}
                   />
               }/>
             <Route exact path='/recipes/update/:id'
@@ -55,6 +61,7 @@ export default class Main extends Component {
                   edit_mode_date={this.props.edit_mode_date}
                   editModeLoadRecipeData={this.props.editModeLoadRecipeData}
                   editModeSubmitForm={this.props.editModeSubmitForm}
+                  navbarSearchValue={this.props.navbarSearchValue}
                 />
               }/>
             <Redirect to="/recipes/"/>

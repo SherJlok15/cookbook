@@ -7,6 +7,13 @@ export default class EditRecipe extends Component {
     this.props.editModeLoadRecipeData(this.props.match.params.id);
 
   }
+
+  componentDidUpdate() {
+    if (this.props.navbarSearchValue.length > 0 ) {
+      window.location = '/recipes/';
+    }
+  }
+  
   render(props) {
     return(
       <div className="bg-light container vh-100">
@@ -16,7 +23,7 @@ export default class EditRecipe extends Component {
          <div key={item._id}>
            <h3 className="text-center text-muted">Edit recipe</h3>
            <form onSubmit={(event) => this.props.editModeSubmitForm(event)}
-             className="container d-flex flex-column justify-content-center">
+             className="container d-flex flex-column justify-content-center max-width-90 min-width-90">
              <div className="form-group container">
                <label className="text-primary">Username: </label>
                <input

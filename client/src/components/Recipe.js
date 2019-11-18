@@ -3,8 +3,15 @@ import { Link } from 'react-router-dom';
 
 export default class Recipe extends Component{
   componentDidMount() {
-    this.props.getRecipeId(this.props.match.params.id)
+    this.props.getRecipeId(this.props.match.params.id);
   }
+
+  componentDidUpdate() {
+    if (this.props.navbarSearchValue.length > 0 ) {
+      window.location = '/recipes/';
+    }
+  }
+
   render(props) {
     return(
       <div className="container  bg-light">
@@ -13,7 +20,7 @@ export default class Recipe extends Component{
         this.props.data.filter((item) => {
           return item._id === this.props.match.params.id
         }).map(item =>
-          <div key={item._id} className="container">
+          <div key={item._id} className="container max-width-90 min-width-90">
             <div className="d-flex justify-content-end padding-10">
               <Link to={'/recipes/update/'+this.props.match.params.id}
                 className="btn btn-success margin-right-10">
@@ -24,7 +31,7 @@ export default class Recipe extends Component{
                 delete
               </span>
             </div>
-            <h3 className="text-primary text-center">{item.title}</h3>
+            <h3 className="text-success text-center">{item.title}</h3>
             <div className="padding-10 ">
               <div className="text-success">
                 created at:

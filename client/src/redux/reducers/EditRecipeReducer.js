@@ -20,7 +20,6 @@ const initialState = {
 export default function EditRecipeReducer(state = initialState, action) {
   switch (action.type) {
     case EDIT_MODE_GET_USERNAME_VALUE:
-      console.log(action.value)
       return {
         ...state,
         username: action.value

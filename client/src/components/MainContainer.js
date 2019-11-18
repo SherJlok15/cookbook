@@ -1,6 +1,12 @@
 import { connect } from 'react-redux';
 import Main from './Main';
-import { loadData, toggleClassLastVersion } from '../redux/actions/mainActions';
+import {
+  loadData,
+  toggleClassLastVersion,
+  navbarGetSearchInputValue,
+  navbarSearchInputResetValue,
+} from '../redux/actions/mainActions';
+
 import {
   getUsernameValue,
   getTitleValue,
@@ -30,7 +36,8 @@ function mapStateToProps(state) {
     edit_mode_text: state.editRecipe.text,
     edit_mode_date: state.editRecipe.date,
     edit_mode_recipe_data: state.editRecipe.edit_mode_recipe_data,
-    show_last_version: state.main.show_last_version
+    show_last_version: state.main.show_last_version,
+    navbarSearchValue: state.main.navbarSearchValue,
   }
 }
 
@@ -50,7 +57,9 @@ function mapDispatchToProps(dispatch) {
     editModeGetDateValue: (date) => dispatch(editModeGetDateValue(date)),
     editModeLoadRecipeData: (value) => dispatch(editModeLoadRecipeData(value)),
     editModeSubmitForm: (event) => dispatch(editModeSubmitForm(event)),
-    toggleClassLastVersion: () => dispatch(toggleClassLastVersion())
+    toggleClassLastVersion: () => dispatch(toggleClassLastVersion()),
+    navbarGetSearchInputValue: (value) => dispatch(navbarGetSearchInputValue(value)),
+    navbarSearchInputResetValue: () => dispatch(navbarSearchInputResetValue()),
   }
 }
 

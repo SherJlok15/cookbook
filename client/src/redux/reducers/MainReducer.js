@@ -1,8 +1,13 @@
-import { SAVE_DATA, TOGGLE_CLASS_LAST_VERSION } from '../actions/mainActions';
+import {
+  SAVE_DATA, TOGGLE_CLASS_LAST_VERSION,
+  NAVBAR_GET_SEARCH_INPUT_VALUE,
+  NAVBAR_SEARCH_INPUT_RESET_VALUE,
+ } from '../actions/mainActions';
 
 const initialState = {
   data: '',
-  show_last_version: false
+  show_last_version: false,
+  navbarSearchValue: ''
 }
 
 export default function MainReducer(state = initialState, action) {
@@ -17,6 +22,16 @@ export default function MainReducer(state = initialState, action) {
       return {
         ...state,
         show_last_version: lastVersionBool
+      }
+    case NAVBAR_GET_SEARCH_INPUT_VALUE:
+      return {
+        ...state,
+        navbarSearchValue:action.value
+      }
+    case NAVBAR_SEARCH_INPUT_RESET_VALUE:
+      return {
+        ...state,
+        navbarSearchValue: ''
       }
     default:
       return state
